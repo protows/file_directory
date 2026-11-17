@@ -1,0 +1,158 @@
+//Вам нужно создать файловый менеджер. Приложение должно уметь:
+//просматривать содержимое директории;
+//создавать файлы и директории;
+//переименовывать файлы или директории;
+//полностью перемещать файлы или директории;
+//удалять файлы или директории.
+//Пользователю необходимо выбрать, какую операцию он хочет выполнить с файлом или папкой, а затем ввести путь к нужному файлу.
+//https://github.com/practicetasks/java_tasks/blob/main/files/task_1/README.md
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.io.File;
+public class F5_Task {
+    private static final String HOME = System.getProperty("user.home");
+    public static void main(String[] args) throws IOException{
+        System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
+        String separatorSlash = FileSystems.getDefault().getSeparator();
+        String addPath =  "Videos" + separatorSlash + "testFolder";
+        Scanner scanner = new Scanner(System.in);
+	while_loop:
+        while (true) {
+            printMenu();
+            String command = scanner.nextLine();
+          
+            System.out.println("Введите путь к файлу/директории: ");
+            String enteredPath = scanner.nextLine();
+            if(enteredPath.equals("1")){
+                enteredPath  = addPath;
+            }
+            // Объявите переменную path с типом Path.
+            Path path;
+            try{
+               path = Paths.get(HOME, enteredPath);
+            }catch(InvalidPathException e){
+                System.out.println("Incorect path");
+                break;
+            }
+
+            // Выполните действия в зависимости от введённой команды.
+            switch (command) {
+                case "exit":
+                    System.out.println("Выход.");
+                    break while_loop;
+                case "ls":
+                       // выведите список элементов директории
+                        File[] items = path.toFile().listFiles();
+                        System.out.println("path " + path);
+                    if (items == null) {
+                        System.out.println("Caanot read context of directory");
+                        break;
+                    }
+                    for(File item: items){
+                        System.out.println((item.isDirectory() ? "Catalog" : "file") + item.getName());
+                    }
+                    break;
+                case "mkdir":
+                    try {
+                        // создайте директорию
+                        //create dicrectory
+                        Path testDirectory = Paths.get(HOME, addPath, "testDirectory");
+                        if(Files.exists(testDirectory)){
+                            System.out.println("Directory has created!");
+                        }else{
+                            testDirectory = Files.createDirectory(testDirectory);
+                            if(Files.isDirectory(testDirectory)){
+                            System.out.println("Directory has created!");
+                            }
+                        }
+                    }
+                    catch (IOException e) {
+                        System.out.println("Произошла ошибка при создании директории.");
+                        e.printStackTrace();
+                    }
+                    break;
+                case "touch":
+                    try {
+                        // создайте файл
+                        //create file
+                        Path testFile = Paths.get(HOME, addPath, "testFile_v1.txt");
+                        if(Files.exists(testFile)){
+                            System.out.println("File alredy exists");
+                        }else{
+                            testFile = Files.createFile(testFile);
+                            if(Files.exists(testFile)){
+                                System.out.println("Files has created!");
+                            }
+                        } //create file
+                    }
+                    catch (IOException e) {
+                        System.out.println("Произошла ошибка при создании файла.");
+                        e.printStackTrace();
+                    }
+                    break;
+                case "rename":
+                    System.out.println("Введите новое имя файла/директории: ");
+                    String newName = scanner.nextLine();
+                    try {
+                        // переименуйте файл
+                        //create file
+                        Path testFile = Paths.get(HOME, addPath, "testFile_v1.txt");
+                        if(Files.exists(testFile)){
+                            System.out.println("File alredy exists");
+
+                        }else{
+                            testFile = Files.createFile(testFile);
+                            if(Files.exists(testFile)){
+                                System.out.println("Files has created!");
+                            }
+                        } //create file
+                    }
+                    catch (IOException e) {
+                        System.out.println("Произошла ошибка при переименовании файла/директории.");
+                        e.printStackTrace();
+                    }
+                    break;
+                case "rm_file":
+                    try {
+                        if (!Files.isDirectory(path)) {
+                            // удалите файл
+                             //delete file
+                            Files.delete(path); 
+                            if(!Files.exists(path)){
+                                System.out.println("the file has already been removed");
+                            } //delete file
+                        }
+                        else {
+                            System.out.println("С помощью этой команды можно удалить только файл!");
+                        }
+                    }
+                    catch (IOException e) {
+                        System.out.println("Произошла ошибка при удалении файла.");
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    System.out.println("Извините, такой команды пока нет.");
+            }
+
+        }
+    }
+
+    public static void printMenu() {
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("ls - посмотреть содержимое директории.");
+        System.out.println("mkdir - создать директорию.");
+        System.out.println("touch - создать файл.");
+        System.out.println("rename - переименовать директорию/файл.");
+        System.out.println("rm_file - удалить файл.");
+        System.out.println("exit - выход.");
+    }
+
+}
