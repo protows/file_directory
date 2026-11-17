@@ -1,0 +1,22 @@
+package file_directory;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+public class F2 {
+private static final String HOME = System.getProperty("user.home");
+public static void main(String[] args) {
+// создание объекта Path с помощью статического метода get() класса Paths
+Path testFilePath = Paths.get(HOME, "NetBeansProjects", "mavenproject1", "file.txt");
+// вывод информации о файле
+System.out.println("Информация о файле: ");
+System.out.println(" - имя: " + testFilePath.getFileName());
+System.out.println(" - корневая директория: " + testFilePath.getRoot());
+System.out.println(" - родительская директория: " + testFilePath.getParent());
+// вывод элементов пути
+System.out.println("Элементы пути: ");
+for (Path element : testFilePath) {
+System.out.println(" - элемент пути: " + element);
+}
+}
+}
