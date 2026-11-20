@@ -105,7 +105,7 @@ public class F5_Task {
                     try {
                         // переименуйте файл
                         //create file
-                        Path testFile = Paths.get(HOME, addPath, "testFile_v1.txt");
+                        Path testFile = Paths.get(HOME, addPath, newName);
                         if(Files.exists(testFile)){
                             System.out.println("File alredy exists");
 
@@ -166,6 +166,9 @@ public class F5_Task {
                     //move
                     path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("Перемещён: " + path);
+                    break;
+                case "exit":
+                    
                     break;
                 default:
                     System.out.println("Извините, такой команды пока нет.");
