@@ -31,7 +31,7 @@ public class F5_Task {
            
             String command = scanner.nextLine();
             
-            if(command.equals("выход")){
+            if(command.equals("exit")){
                  System.out.println("Выход.");
                  break while_loop;
             }
@@ -124,7 +124,6 @@ public class F5_Task {
                         if (!Files.isDirectory(path)) {
                             // удалите файл
                              //delete file
-                           
                             if(Files.exists(path)){
                                  Files.delete(path); 
                                 System.out.println("the file has  removed");
@@ -175,11 +174,9 @@ public class F5_Task {
                      } catch(IOException e){
                        System.out.println(e);
                    }
-                   
                 default:
                     System.out.println("Извините, такой команды пока нет.");
             }
-
         }
     }
 
@@ -195,5 +192,4 @@ public class F5_Task {
         System.out.println("move_directory - перемещений диреткориии");
         System.out.println("exit - выход.");
     }
-
 }
