@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.io.File;
 public class F5_Task {
     private static final String HOME = System.getProperty("user.home");
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) {
         System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
         String separatorSlash = FileSystems.getDefault().getSeparator();
         String addPath =  "Videos" + separatorSlash + "testFolder";
@@ -30,7 +30,8 @@ public class F5_Task {
             printMenu();
            
             String command = scanner.nextLine();
-            if(command.equals("Выход")){
+            
+            if(command.equals("выход")){
                  System.out.println("Выход.");
                  break while_loop;
             }
@@ -157,14 +158,24 @@ public class F5_Task {
                     break; 
                case "move__file":
                     //move
-                    path = Files.move( path, path.resolve("testFile_v2.txt"), StandardCopyOption.REPLACE_EXISTING);
-                    System.out.println("Перемещён: " + path);
-                    break;
+                   try{
+                        path = Files.move( path, path.resolve("testFile_v2.txt"), StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("Перемещён: " + path);
+                        break;
+                   }catch(IOException e){
+                       System.out.println(e);
+                   }
+                   
                 case "move_directory":
                     //move
-                    path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
+                     try{
+                          path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("Перемещён: " + path);
                     break;
+                     } catch(IOException e){
+                       System.out.println(e);
+                   }
+                   
                 default:
                     System.out.println("Извините, такой команды пока нет.");
             }
