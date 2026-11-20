@@ -69,11 +69,10 @@ public class F5_Task {
                     try {
                         // создайте директорию
                         //create dicrectory
-                        Path testDirectory =     path;
-                        if(Files.exists(testDirectory)){
+                        if(Files.exists(path)){
                             System.out.println("Directory has created!");
                         }else{
-                            testDirectory = Files.createDirectory(testDirectory);
+                            Files.createDirectory(path);
                         }
                     }
                     catch (IOException e) {
@@ -85,14 +84,11 @@ public class F5_Task {
                     try {
                         // создайте файл
                         //create file
-                         Path testFile =     path;
-                        if(Files.exists(testFile)){
+                        if(Files.exists(path)){
                             System.out.println("File alredy exists");
                         }else{
-                            testFile = Files.createFile(testFile);
-                            if(Files.exists(testFile)){
-                                System.out.println("Files has created!");
-                            }
+                            Files.createFile(path);
+                            
                         } //create file
                     }
                     catch (IOException e) {
