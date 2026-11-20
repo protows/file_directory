@@ -86,7 +86,9 @@ public class F5_Task {
                     try {
                         // создайте файл
                         //create file
-                        Path testFile = Paths.get(HOME, enteredPath, "testFile_v1.txt");
+                        //Path testFile = Paths.get(HOME, enteredPath, "testFile_v1.txt");
+                        Path testFile = Paths.get(HOME, enteredPath);
+
                         if(Files.exists(testFile)){
                             System.out.println("File alredy exists");
                         }else{
