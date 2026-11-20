@@ -28,7 +28,12 @@ public class F5_Task {
 	while_loop:
         while (true) {
             printMenu();
+           
             String command = scanner.nextLine();
+            if(command.equals("Выход")){
+                 System.out.println("Выход.");
+                 break while_loop;
+            }
           
             System.out.println("Введите путь к файлу/директории: ");
             String enteredPath = scanner.nextLine();
@@ -60,7 +65,7 @@ public class F5_Task {
                         break;
                     }
                     for(File item: items){
-                        System.out.println((item.isDirectory() ? "Catalog" : "file") + item.getName());
+                        System.out.println((item.isDirectory() ? "Catalog\n" : "file") + item.getName());
                     }
                     break;
                 case "mkdir":
@@ -183,9 +188,9 @@ public class F5_Task {
         System.out.println("touch - создать файл.");
         System.out.println("rename - переименовать директорию/файл.");
         System.out.println("rm_file - удалить файл.");
-       System.out.println("rm_directory - удалить диретории.");
-       System.out.println("move__file - перемещений файла");
-       System.out.println("move_directory - перемещений диреткориии");
+        System.out.println("rm_directory - удалить диретории.");
+        System.out.println("move__file - перемещений файла");
+        System.out.println("move_directory - перемещений диреткориии");
         System.out.println("exit - выход.");
     }
 
