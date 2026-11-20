@@ -65,7 +65,7 @@ public class F5_Task {
                         break;
                     }
                     for(File item: items){
-                        System.out.println((item.isDirectory() ? "Catalog\n" : "file") + item.getName());
+                        System.out.println((item.isDirectory() ? "Catalog\n" : "file\n") + item.getName());
                     }
                     break;
                 case "mkdir":
