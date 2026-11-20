@@ -65,7 +65,7 @@ public class F5_Task {
                     try {
                         // создайте директорию
                         //create dicrectory
-                        Path testDirectory = Paths.get(HOME, addPath, "testDirectory");
+                        Path testDirectory = Paths.get(HOME, enteredPath, "testDirectory");
                         if(Files.exists(testDirectory)){
                             System.out.println("Directory has created!");
                         }else{
@@ -84,7 +84,7 @@ public class F5_Task {
                     try {
                         // создайте файл
                         //create file
-                        Path testFile = Paths.get(HOME, addPath, "testFile_v1.txt");
+                        Path testFile = Paths.get(HOME, enteredPath, "testFile_v1.txt");
                         if(Files.exists(testFile)){
                             System.out.println("File alredy exists");
                         }else{
@@ -166,9 +166,6 @@ public class F5_Task {
                     //move
                     path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("Перемещён: " + path);
-                    break;
-                case "exit":
-                    
                     break;
                 default:
                     System.out.println("Извините, такой команды пока нет.");
