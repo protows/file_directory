@@ -48,7 +48,7 @@ public class F5_Task {
                path = Paths.get(HOME, enteredPath);
             }catch(InvalidPathException e){
                 System.out.println("Incorect path");
-                break;
+                continue;
             }
 
             // Выполните действия в зависимости от введённой команды.
