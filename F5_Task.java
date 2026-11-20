@@ -104,7 +104,7 @@ public class F5_Task {
                     try {
                         // переименуйте файл
                         //create file
-                        File newFile = Paths.get(HOME, enteredPath, newName).toFile();
+                        File newFile = path.resolve(newName).toFile();
                         
                         File oldFile = path.toFile();
                         oldFile.renameTo(newFile);
