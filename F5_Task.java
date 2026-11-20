@@ -34,6 +34,8 @@ public class F5_Task {
             String enteredPath = scanner.nextLine();
             if(enteredPath.equals("1")){
                 enteredPath  = addPath;
+            }else{
+                 enteredPath  = addPath + separatorSlash + enteredPath;
             }
             // Объявите переменную path с типом Path.
             Path path;
@@ -65,7 +67,7 @@ public class F5_Task {
                     try {
                         // создайте директорию
                         //create dicrectory
-                        Path testDirectory = Paths.get(HOME, enteredPath, "testDirectory");
+                       Path testDirectory = Paths.get(HOME, enteredPath);
                         if(Files.exists(testDirectory)){
                             System.out.println("Directory has created!");
                         }else{
