@@ -53,9 +53,6 @@ public class F5_Task {
 
             // Выполните действия в зависимости от введённой команды.
             switch (command) {
-                case "exit":
-                    System.out.println("Выход.");
-                    break while_loop;
                 case "ls":
                        // выведите список элементов директории
                         File[] items = path.toFile().listFiles();
@@ -77,9 +74,6 @@ public class F5_Task {
                             System.out.println("Directory has created!");
                         }else{
                             testDirectory = Files.createDirectory(testDirectory);
-                            if(Files.isDirectory(testDirectory)){
-                            System.out.println("Directory has created!");
-                            }
                         }
                     }
                     catch (IOException e) {
