@@ -98,8 +98,6 @@ public class F5_Task {
                     }
                     break;
                 case "rename":
-                    System.out.println("Введите старого имя файла: ");
-                    String oldName = scanner.nextLine();
                     System.out.println("Введите новое имя файла: ");
                     String newName = scanner.nextLine();
 
