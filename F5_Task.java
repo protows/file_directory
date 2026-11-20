@@ -1,3 +1,5 @@
+package file_directory;
+
 //Вам нужно создать файловый менеджер. Приложение должно уметь:
 //просматривать содержимое директории;
 //создавать файлы и директории;
@@ -5,7 +7,7 @@
 //полностью перемещать файлы или директории;
 //удалять файлы или директории.
 //Пользователю необходимо выбрать, какую операцию он хочет выполнить с файлом или папкой, а затем ввести путь к нужному файлу.
-//https://github.com/practicetasks/java_tasks/blob/main/files/task_1/README.md
+//
 import java.io.IOException;
 import java.nio.file.InvalidPathException;
 import java.nio.file.FileSystems;
@@ -138,6 +140,33 @@ public class F5_Task {
                         e.printStackTrace();
                     }
                     break;
+                case "rm_directory":
+                    try {
+                        if (!Files.isDirectory(path)) {
+                            Files.delete(path); 
+                            if(!Files.exists(path)){
+                                System.out.println("the Directory has already been removed");
+                            } 
+                        }
+                        else {
+                            System.out.println("С помощью этой команды можно удалить только Directory!");
+                        }
+                    }
+                    catch (IOException e) {
+                        System.out.println("Произошла ошибка при удалении файла.");
+                        e.printStackTrace();
+                    }
+                    break; 
+               case "move__file":
+                    //move
+                    path = Files.move( path, path.resolve("testFile_v2.txt"), StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("Перемещён: " + path);
+                    break;
+                case "move_directory":
+                    //move
+                    path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("Перемещён: " + path);
+                    break;
                 default:
                     System.out.println("Извините, такой команды пока нет.");
             }
@@ -152,6 +181,9 @@ public class F5_Task {
         System.out.println("touch - создать файл.");
         System.out.println("rename - переименовать директорию/файл.");
         System.out.println("rm_file - удалить файл.");
+       System.out.println("rm_directory - удалить диретории.");
+       System.out.println("move__file - перемещений файла");
+       System.out.println("move_directory - перемещений диреткориии");
         System.out.println("exit - выход.");
     }
 
