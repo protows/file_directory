@@ -106,13 +106,13 @@ public class F5_Task {
                     try {
                         // переименуйте файл
                         //create file
-                        File newFile = Paths.get(HOME, addPath, oldName).toFile();
+                        File newFile = Paths.get(HOME, addPath, newName).toFile();
                         
                         File oldFile = Paths.get(HOME, addPath, oldName).toFile();
                         oldFile.renameTo(newFile);
 //                        
-   }
-                    catch (IOException e) {
+                        }
+                    catch (Exception e) {
                         System.out.println("Произошла ошибка при переименовании файла/директории.");
                         e.printStackTrace();
                     }
