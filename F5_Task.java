@@ -108,7 +108,7 @@ public class F5_Task {
                         //create file
                         File newFile = Paths.get(HOME, enteredPath, newName).toFile();
                         
-                        File oldFile = Paths.get(HOME, enteredPath, oldName).toFile();
+                        File oldFile = path.toFile();
                         oldFile.renameTo(newFile);
 //                        
                         }
