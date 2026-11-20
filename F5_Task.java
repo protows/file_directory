@@ -67,7 +67,7 @@ public class F5_Task {
                     try {
                         // создайте директорию
                         //create dicrectory
-                       Path testDirectory = Paths.get(HOME, enteredPath);
+                        Path testDirectory =     path;
                         if(Files.exists(testDirectory)){
                             System.out.println("Directory has created!");
                         }else{
@@ -86,9 +86,7 @@ public class F5_Task {
                     try {
                         // создайте файл
                         //create file
-                        //Path testFile = Paths.get(HOME, enteredPath, "testFile_v1.txt");
-                        Path testFile = Paths.get(HOME, enteredPath);
-
+                         Path testFile =     path;
                         if(Files.exists(testFile)){
                             System.out.println("File alredy exists");
                         }else{
