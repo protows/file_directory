@@ -123,9 +123,10 @@ public class F5_Task {
                         if (!Files.isDirectory(path)) {
                             // удалите файл
                              //delete file
-                            Files.delete(path); 
-                            if(!Files.exists(path)){
-                                System.out.println("the file has already been removed");
+                           
+                            if(Files.exists(path)){
+                                 Files.delete(path); 
+                                System.out.println("the file has  removed");
                             } //delete file
                         }
                         else {
