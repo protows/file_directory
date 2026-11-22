@@ -71,9 +71,10 @@ public class F5_Task {
                         // создайте директорию
                         //create dicrectory
                         if(Files.exists(path)){
-                            System.out.println("Directory has created!");
+                            System.out.println("Directory has alreadery been created!");
                         }else{
                             Files.createDirectory(path);
+                            System.out.println("Directory has created!");
                         }
                     }
                     catch (IOException e) {
@@ -100,15 +101,9 @@ public class F5_Task {
                 case "rename":
                     System.out.println("Введите новое имя файла: ");
                     String newName = scanner.nextLine();
-
                     try {
-                        // переименуйте файл
-                        //create file
-                        File newFile = path.resolve(newName).toFile();
-                        
-                        File oldFile = path.toFile();
-                        oldFile.renameTo(newFile);
-//                        
+                       Path targetFle = path.resolveSibling(newName);
+                       path.toFile().renameTo(targetFle.toFile());     
                         }
                     catch (Exception e) {
                         System.out.println("Произошла ошибка при переименовании файла/директории.");
@@ -117,9 +112,8 @@ public class F5_Task {
                     break;
                 case "rm_file":
                     try {
-                        if (!Files.isDirectory(path)) {
-                            // удалите файл
-                             //delete file
+                        File file = path.toFile();
+                        if(file.isFile()) {
                             if(Files.exists(path)){
                                  Files.delete(path); 
                                 System.out.println("the file has  removed");
@@ -136,11 +130,11 @@ public class F5_Task {
                     break;
                 case "rm_directory":
                     try {
-                        if (!Files.isDirectory(path)) {
-                            Files.delete(path); 
-                            if(!Files.exists(path)){
-                                System.out.println("the Directory has already been removed");
-                            } 
+                        if (Files.isDirectory(path)) {
+                            if(Files.exists(path)){
+                                 Files.delete(path); 
+                                System.out.println("the Directory hasd removed");
+                            }
                         }
                         else {
                             System.out.println("С помощью этой команды можно удалить только Directory!");
@@ -151,25 +145,35 @@ public class F5_Task {
                         e.printStackTrace();
                     }
                     break; 
-               case "move__file":
-                    //move
+               case "move_file":
+                   System.out.println("Введите имя файла");
+                   Path targetFile = Paths.get(HOME, addPath, scanner.nextLine());
+                   System.out.println("Введите новое директорию");
+                   Path targetDirectory = Paths.get(HOME, addPath, scanner.nextLine());
                    try{
-                        path = Files.move( path, path.resolve("testFile_v2.txt"), StandardCopyOption.REPLACE_EXISTING);
-                        System.out.println("Перемещён: " + path);
-                        break;
+                        Files.createDirectories(targetDirectory);
                    }catch(IOException e){
                        System.out.println(e);
                    }
-                   
+                   Path destination = targetDirectory.resolve(targetFile.getFileName());
+                           
+                   try{
+                        path = Files.move( targetFile, destination, StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("Перемещён: " + path);
+                   }catch(IOException e){
+                       System.out.println(e);
+                   }
+                   break;
                 case "move_directory":
-                    //move
+                   System.out.println("Введите новое пусть директории");
+                   Path newDirectory = Paths.get(HOME, addPath, scanner.nextLine());
                      try{
-                          path = Files.move( path, path.resolve("direct2"), StandardCopyOption.REPLACE_EXISTING);
-                    System.out.println("Перемещён: " + path);
-                    break;
+                        path = Files.move( path, path.resolve(newDirectory), StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("Перемещён: " + path);
                      } catch(IOException e){
                        System.out.println(e);
                    }
+                     break;
                 default:
                     System.out.println("Извините, такой команды пока нет.");
             }
@@ -184,7 +188,7 @@ public class F5_Task {
         System.out.println("rename - переименовать директорию/файл.");
         System.out.println("rm_file - удалить файл.");
         System.out.println("rm_directory - удалить диретории.");
-        System.out.println("move__file - перемещений файла");
+        System.out.println("move_file - перемещений файла");
         System.out.println("move_directory - перемещений диреткориии");
         System.out.println("exit - выход.");
     }
