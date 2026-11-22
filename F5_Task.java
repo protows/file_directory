@@ -36,9 +36,9 @@ public class F5_Task {
                  break while_loop;
             }
           
-            System.out.println("Введите путь к файлу/директории: ");
+            System.out.println("Введите путь к основному директории: (либо оставть пустым для testFolder)");
             String enteredPath = scanner.nextLine();
-            if(enteredPath.equals("1")){
+            if(enteredPath.equals("")){
                 enteredPath  = addPath;
             }else{
                  enteredPath  = addPath + separatorSlash + enteredPath;
@@ -84,14 +84,13 @@ public class F5_Task {
                     break;
                 case "touch":
                     try {
-                        // создайте файл
-                        //create file
-                        if(Files.exists(path)){
-                            System.out.println("File alredy exists");
-                        }else{
-                            Files.createFile(path);
-                            
-                        } //create file
+                        System.out.println("Введите новое имя файла");
+                        String nameFile = scanner.nextLine();
+                        Files.createDirectories(path.resolve(path));
+                        Path dir = path.resolve(path);
+                        Path targetFile = dir.resolve(nameFile);
+                        System.out.println(targetFile);
+                        Files.createFile(targetFile);
                     }
                     catch (IOException e) {
                         System.out.println("Произошла ошибка при создании файла.");
@@ -99,11 +98,15 @@ public class F5_Task {
                     }
                     break;
                 case "rename":
+                    System.out.println("Введите текущее имя файла: ");
+                    String curName = scanner.nextLine();
                     System.out.println("Введите новое имя файла: ");
                     String newName = scanner.nextLine();
+                    Path source = path.resolve(curName);
+
                     try {
-                       Path targetFle = path.resolveSibling(newName);
-                       path.toFile().renameTo(targetFle.toFile());     
+                       Path targetFle = source.resolveSibling(newName);
+                       source.toFile().renameTo(targetFle.toFile());     
                         }
                     catch (Exception e) {
                         System.out.println("Произошла ошибка при переименовании файла/директории.");
@@ -111,13 +114,16 @@ public class F5_Task {
                     }
                     break;
                 case "rm_file":
+                    System.out.println("Введите имя файла для удаления");
+                    String nameDeletefile = scanner.nextLine();
+                    Path targetFile = path.resolve(nameDeletefile);
+                    System.out.println(targetFile);
                     try {
-                        File file = path.toFile();
+                        File file = targetFile.toFile();
                         if(file.isFile()) {
-                            if(Files.exists(path)){
-                                 Files.delete(path); 
-                                System.out.println("the file has  removed");
-                            } //delete file
+                            Files.delete(targetFile); 
+                            System.out.println("the file has  removed");
+                            
                         }
                         else {
                             System.out.println("С помощью этой команды можно удалить только файл!");
@@ -147,7 +153,7 @@ public class F5_Task {
                     break; 
                case "move_file":
                    System.out.println("Введите имя файла");
-                   Path targetFile = Paths.get(HOME, addPath, scanner.nextLine());
+                   Path targetFile2 = Paths.get(HOME, addPath, scanner.nextLine());
                    System.out.println("Введите новое директорию");
                    Path targetDirectory = Paths.get(HOME, addPath, scanner.nextLine());
                    try{
@@ -155,10 +161,10 @@ public class F5_Task {
                    }catch(IOException e){
                        System.out.println(e);
                    }
-                   Path destination = targetDirectory.resolve(targetFile.getFileName());
+                   Path destination = targetDirectory.resolve(targetFile2.getFileName());
                            
                    try{
-                        path = Files.move( targetFile, destination, StandardCopyOption.REPLACE_EXISTING);
+                        path = Files.move( targetFile2, destination, StandardCopyOption.REPLACE_EXISTING);
                         System.out.println("Перемещён: " + path);
                    }catch(IOException e){
                        System.out.println(e);
