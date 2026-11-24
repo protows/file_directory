@@ -23,7 +23,8 @@ public class F5_Task {
     public static void main(String[] args) {
         System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
         String separatorSlash = FileSystems.getDefault().getSeparator();
-        String addPath =  "Videos" + separatorSlash + "testFolder";
+        //String addPath =  "Videos" + separatorSlash + "testFolder";
+        String addPath = "";
         Scanner scanner = new Scanner(System.in);
 	while_loop:
         while (true) {
@@ -41,7 +42,8 @@ public class F5_Task {
             if(enteredPath.equals("")){
                 enteredPath  = addPath;
             }else{
-                 enteredPath  = addPath + separatorSlash + enteredPath;
+                 //enteredPath  = addPath + separatorSlash + enteredPath;
+                 enteredPath  = separatorSlash + enteredPath;
             }
             // Объявите переменную path с типом Path.
             Path path;
