@@ -152,10 +152,17 @@ public class F5_Task {
                     }
                     break; 
                case "move_file":
+                  System.out.println("Введите новую директорию (относительно testFolder)");
+                  Path targetDirectory1 = Paths.get(HOME, addPath).resolve(scanner.nextLine());
+                  
                    System.out.println("Введите имя файла");
-                   Path targetFile2 = Paths.get(HOME, addPath, scanner.nextLine());
+                   String file2 = scanner.nextLine();
+                   Path targetFile2 = targetDirectory1.resolve(file2);                   
+                   
+                   
                    System.out.println("Введите новое директорию");
                    Path targetDirectory = Paths.get(HOME, addPath, scanner.nextLine());
+
                    try{
                         Files.createDirectories(targetDirectory);
                    }catch(IOException e){
