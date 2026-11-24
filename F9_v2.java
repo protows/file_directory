@@ -32,16 +32,14 @@ public class F9_v2 {
         BufferedReader br = new BufferedReader(readFile);
         //int res_A =0,  res_B =0, res_C =0,  res_D =0;
         int data;
-        frequencyMap.put("A", 0);
-        frequencyMap.put("B", 0);
-        frequencyMap.put("C", 0);
-        frequencyMap.put("D", 0);
+
         while((data = br.read()) != -1){
             char ch =(char)data;
-          if (ch == 'A' || ch == 'B' || ch == 'C' || ch == 'D') {
-                    String key = String.valueOf(ch);
-                    frequencyMap.put(key, frequencyMap.get(key) + 1);
-          }
+         
+            String key = String.valueOf(ch);
+            frequencyMap.put(key, frequencyMap.getOrDefault(key,0) + 1);
+
+          
 
         }
         br.close();
