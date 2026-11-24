@@ -20,9 +20,7 @@ public class F9_v2 {
         Map<String, Integer> resFrequencyMap = readFile();
         for(Map.Entry<String, Integer> entry: resFrequencyMap.entrySet()){
             System.out.println("буква:" + entry.getKey() + "; количество: " + entry.getValue()); //<буква>: <количество>
-
         }
-
     }
     
     public static  Map<String, Integer>  readFile() throws IOException{
@@ -37,13 +35,13 @@ public class F9_v2 {
         while((data = br.read()) != -1){
             char ch =(char)data;
             if(ch == 'A'){
-               frequencyMap.put("A", res_A++);
+               frequencyMap.put("A", ++res_A);
             }else if(ch == 'B'){
-                frequencyMap.put("B", res_B++);
+                frequencyMap.put("B", ++res_B);
             }else if(ch == 'C'){
-                frequencyMap.put("C", res_C++);
+                frequencyMap.put("C", ++res_C);
             }else if(ch == 'D'){
-                frequencyMap.put("D", res_D++);
+                frequencyMap.put("D", ++res_D);
             }
         }
         br.close();
