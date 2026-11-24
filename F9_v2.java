@@ -30,19 +30,19 @@ public class F9_v2 {
         Map<String, Integer> frequencyMap = new HashMap<>();
         FileReader readFile = new FileReader(addPath + "result.txt", StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(readFile);
-        int res_A =0,  res_B =0, res_C =0,  res_D =0;
+        //int res_A =0,  res_B =0, res_C =0,  res_D =0;
         int data;
+        frequencyMap.put("A", 0);
+        frequencyMap.put("B", 0);
+        frequencyMap.put("C", 0);
+        frequencyMap.put("D", 0);
         while((data = br.read()) != -1){
             char ch =(char)data;
-            if(ch == 'A'){
-               frequencyMap.put("A", ++res_A);
-            }else if(ch == 'B'){
-                frequencyMap.put("B", ++res_B);
-            }else if(ch == 'C'){
-                frequencyMap.put("C", ++res_C);
-            }else if(ch == 'D'){
-                frequencyMap.put("D", ++res_D);
-            }
+          if (ch == 'A' || ch == 'B' || ch == 'C' || ch == 'D') {
+                    String key = String.valueOf(ch);
+                    frequencyMap.put(key, frequencyMap.get(key) + 1);
+          }
+
         }
         br.close();
         readFile.close();
